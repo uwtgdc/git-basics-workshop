@@ -7,10 +7,13 @@ Live site: [🔗 UWT Game Dev Git Basics Workshop](https://uwtgdc.github.io/git-
 
 ## Quickstart
 
-1. Create a branch named `add/<your-github-username>`
-2. Copy `templates/submission.json` to `submissions/<your-github-username>.json`
-3. Edit the fields (`name`, `color`, `message`, `emoji`)
-4. Commit changes to your branch, push changes from your _local_ branch to your branch on GitHub, open a PR (Pull Request) from your branch on GitHub into to this repo's `main` branch
+0. **Login** to GitHub [Sign up](https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E%2Fcommits%2Fshow&source=header-repo&source_repo=uwtgdc%2Fgit-basics-workshop) / [Sign in](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fuwtgdc%2Fgit-basics-workshop%2Fcommits%2Fmain%2F).
+1. [**Fork**](https://github.com/uwtgdc/git-basics-workshop/fork) your own copy of the git-basics-workshop repo.
+2. **Create a branch** in your fork named `add/<your-github-username>`
+3. **Copy** `templates/submission.json` to `submissions/<your-github-username>.json`
+4. **Edit** the fields (`name`, `color`, `message`, `emoji`)
+5. **`Commit`** changes to your `branch`, then `push` or `publish` changes from your _local branch_ to your fork on GitHub,
+6. [Open a **New pull request**](https://github.com/uwtgdc/git-basics-workshop/compare) (PR) **from** your fork / branch on GitHub **into** the original repo's `main` branch.
 
 ## Workshop Guidelines
 
@@ -19,6 +22,7 @@ Live site: [🔗 UWT Game Dev Git Basics Workshop](https://uwtgdc.github.io/git-
 - Create a branch `add/<your-github-username>`
 - Add exactly one file: `submissions/<your-github-username>.json`
 - Keep JSON valid and follow the template fields
+- Ask for help if you're stumped for over 2 minutes
 
 🚫 Do not:
 
@@ -32,9 +36,9 @@ Your PR will run GitHub Action checks to ensure:
 - The filename matches your GitHub username
 - The JSON matches the basic schema
 
-When checks pass, a some GitHub Actions magic merges your PR and the webapp will update with your Tile
+When checks pass, [magic workflow actions](https://github.com/uwtgdc/git-basics-workshop/actions) merges your PR and the webapp will update with your customized mosaic Tile :)
 
-## Repository architecture
+## Repository Architecture
 
 ```text
 git-basics-workshop/
@@ -69,7 +73,9 @@ git-basics-workshop/
 ## Glossary
 
 “**_Git_ vs _GitHub_**”: Git = local save states + history; GitHub = online hub for sharing & collaboration.
+“**Fork**”: create a copy of someone else's repository (e.g., make a backup of this workshop's code).
 “**Branch**”: your sandbox line of work.
+"**Local branch**": a branch on your local machine (e.g., the branch you are currently working on in VSCode, IntelliJ, CodeSpaces, etc.) is different from the identically named branch on GitHub. While they may share the same name, they are separate entities and any changes made to the local branch will not be reflected on the GitHub branch until you `push` the changes.
 “**PR**”: 'Pull Request' asking to merge your branch into the main project.
 “**CI checks**”: magic robots that keep us from stepping on toes.
 “**Deploy**”: turn code into a live website.
