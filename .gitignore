@@ -33,6 +33,27 @@ modules.xml
 .vscode/
 **/.vscode
 
+# Eclipse
+.project
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+.classpath
+.apt_generated
+.sts4-cache/
+.eclipse/*
+.eclipse/
+**/.eclipse
+
+
 # dependencies
 /node_modules
 /node_modules/*
