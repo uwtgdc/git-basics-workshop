@@ -72,10 +72,10 @@ git-basics-workshop/
 
 ## Glossary
 
-“**_Git_ vs _GitHub_**”: Git = local save states + history; GitHub = online hub for sharing & collaboration.
-“**Fork**”: create a copy of someone else's repository (e.g., make a backup of this workshop's code).
-“**Branch**”: your sandbox line of work.
-"**Local branch**": a branch on your local machine (e.g., the branch you are currently working on in VSCode, IntelliJ, CodeSpaces, etc.) is different from the identically named branch on GitHub. While they may share the same name, they are separate entities and any changes made to the local branch will not be reflected on the GitHub branch until you `push` the changes.
-“**PR**”: 'Pull Request' asking to merge your branch into the main project.
-“**CI checks**”: magic robots that keep us from stepping on toes.
-“**Deploy**”: turn code into a live website.
+- “**_Git_ vs _GitHub_**”: Git = local save states + history; GitHub = online hub for sharing & collaboration.
+- “**Fork**”: create a copy of someone else's repository (e.g., make a backup of this workshop's code).
+- “**Branch**”: your sandbox line of work.
+- "**Local branch**": a branch on your local machine (e.g., the branch you are currently working on in VSCode, IntelliJ, CodeSpaces, etc.) is different from the identically named branch on GitHub. While they may share the same name, they are separate entities and any changes made to the local branch will not be reflected on the GitHub branch until you `push` the changes.
+- “**PR**”: 'Pull Request' asking to merge your branch into the main project.
+- “**CI checks**”: magic robots that keep us from stepping on toes.
+- “**Deploy**”: turn code into a live website.
