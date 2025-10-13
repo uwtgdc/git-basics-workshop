@@ -1,0 +1,44 @@
+name: Validate submission
+on:
+  pull_request:
+    branches: [ main ]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check changed files
+        run: |
+          CHANGED=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
+          echo "Changed files:" $CHANGED
+          BAD=$(echo "$CHANGED" | grep -v '^submissions/' || true)
+          COUNT=$(echo "$CHANGED" | wc -w)
+          if [ -n "$BAD" ]; then
+            echo "❌ You changed files outside submissions/. Please revert those files."
+            exit 1
+          fi
+          if [ "$COUNT" -ne 1 ]; then
+            echo "❌ Please change exactly one file."
+            exit 1
+          fi
+      - name: Enforce filename matches GitHub actor
+        run: |
+          FILE=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
+          EXPECTED="submissions/${{ github.actor }}.json"
+          if [ "$FILE" != "$EXPECTED" ]; then
+            echo "❌ Filename must be $EXPECTED"
+            exit 1
+          fi
+      - name: Validate JSON schema
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: |
+          npm i ajv@8 fs-extra@11
+          node -e "const fs=require('fs');const Ajv=require('ajv');const ajv=new Ajv();
+                   const schema=JSON.parse(fs.readFileSync('templates/schema.json','utf8'));
+                   const FILE='submissions/${{ github.actor }}.json';
+                   const data=JSON.parse(fs.readFileSync(FILE,'utf8'));
+                   if(!ajv.validate(schema,data)){console.error(ajv.errors);process.exit(1)}"
