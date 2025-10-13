@@ -1,14 +1,48 @@
+/**
+ * App.jsx
+ *
+ * The main App component.
+ *
+ * Displays a list of submissions from the server.
+ *
+ * Loading state is handled with a simple "Loading..." message.
+ * Error state is handled with a message "Could not load submissions yet. Try refreshing in a few seconds."
+ *
+ * @author Rhea Mimi Carillo <https://github.com/RheaMimiCarillo>
+ * @author UWT Game Dev Club <https://github.com/uwtgdc>
+ */
+
 import React, { useEffect, useState } from 'react'
 import Tile from './components/Tile.jsx'
 
-const BASE = '/git-basics-workshop' // make sure this matches const BASE in vite.config.js base
 
+// const BASE = '/git-basics-workshop' // make sure this matches const BASE in vite.config.js base
+
+// use base from Vite dynamically
+// import.meta.env.BASE_URL is set from vite.config.js `base` (e.g., "/git-basics-workshop/")
+const BASE = (import.meta.env.BASE_URL || '/').replace(/\/$/, '')
+
+/**
+ * The main App component.
+ *
+ * Displays a list of submissions from the server.
+ *
+ * Loading state is handled with a simple "Loading..." message.
+ * Error state is handled with a message "Could not load submissions yet. Try refreshing in a few seconds."
+ *
+ * @returns {JSX.Element} The main App component.
+ */
 export default function App() {
   const [entries, setEntries] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
   useEffect(() => {
+  /**
+   * Load the list of submissions from the server.
+   *
+   * @returns {Promise<void>} Resolves when the list of submissions is loaded, rejects when there is an error.
+   */
     async function load() {
       try {
         const res = await fetch(`${BASE}/submissions/index.json?ts=${Date.now()}`)
@@ -26,7 +60,7 @@ export default function App() {
 
   return (
     <main style={{maxWidth: 1100, margin: '2rem auto', padding: '0 1rem'}}>
-      <h1>🎨 UWT Game Dev • Collaborative Mosaic</h1>
+      <h1>🎨 UWT Game Dev Club Git Basics Workshop: Collaborative Mosaic</h1>
       <p>Each tile below was added via a Pull Request during our Git 101 workshop!</p>
       {loading && <p>Loading…</p>}
       {error && <p role="alert">{error}</p>}
