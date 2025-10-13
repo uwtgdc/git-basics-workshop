@@ -1,3 +1,8 @@
+# Build and deploy the GitHub Pages site
+# This workflow is triggered on push events to the main branch.
+# It builds the site and deploys it to GitHub Pages.
+# The workflow has write permissions to the GitHub Pages site
+# and the Actions token is available in the workflow.
 name: Build and Deploy to GitHub Pages
 on:
   push:
@@ -17,21 +22,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v4 # Checkout the repo
+      - uses: actions/setup-node@v4 # Set up Node.js
         with:
-          node-version: '20'
-      - run: npm ci || npm i
-      - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
+          node-version: '20' # Use Node.js version 20
+      - run: npm ci || npm i # Install dependencies
+      - run: npm run build # Build the site
+      - uses: actions/upload-pages-artifact@v3 # Upload the built site
         with:
-          path: dist
+          path: dist # Upload the contents of the dist directory
   deploy:
-    needs: build
+    needs: build # Requires successful build job before deploying
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }} # Set the environment variable GITHUB_PAGES_URL to the URL of the deployed site
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v4 # Deploy the site to GitHub Pages

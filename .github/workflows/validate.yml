@@ -1,3 +1,6 @@
+# Validate that only ONE submission file is changed in a PR.
+# This job fails if any other files are changed.
+# This job also fails if the submission file is invalid JSON or does not match the schema.
 name: Validate submission
 on:
   pull_request:
@@ -9,34 +12,46 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      # Check that only one submission file is changed
       - name: Check changed files
         run: |
+          # Get the list of changed files
           CHANGED=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
           echo "Changed files:" $CHANGED
+          # Check if there are any bad files (not in submissions/)
           BAD=$(echo "$CHANGED" | grep -v '^submissions/' || true)
-          COUNT=$(echo "$CHANGED" | wc -w)
+          # If there are bad files, exit with error
           if [ -n "$BAD" ]; then
             echo "❌ You changed files outside submissions/. Please revert those files."
             exit 1
           fi
+          # Check if there is exactly one changed file
+          COUNT=$(echo "$CHANGED" | wc -w)
           if [ "$COUNT" -ne 1 ]; then
             echo "❌ Please change exactly one file."
             exit 1
           fi
+      # Enforce filename matches GitHub username
       - name: Enforce filename matches GitHub actor
         run: |
+          # Get the changed file
           FILE=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
+          # Get the expected filename
           EXPECTED="submissions/${{ github.actor }}.json"
+          # If the filenames don't match, exit with error
           if [ "$FILE" != "$EXPECTED" ]; then
             echo "❌ Filename must be $EXPECTED"
             exit 1
           fi
+      # Validate JSON schema
       - name: Validate JSON schema
         uses: actions/setup-node@v4
         with:
           node-version: '20'
       - run: |
+          # Install dependencies
           npm i ajv@8 fs-extra@11
+          # Validate the JSON schema
           node -e "const fs=require('fs');const Ajv=require('ajv');const ajv=new Ajv();
                    const schema=JSON.parse(fs.readFileSync('templates/schema.json','utf8'));
                    const FILE='submissions/${{ github.actor }}.json';
