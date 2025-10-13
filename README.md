@@ -3,7 +3,7 @@
 Add yourself to the mosaic by submitting **one** JSON file in `submissions/` via Pull Request.
 When your PR is merged, the site redeploys and your tile appears on GitHub Pages 🎉
 
-Live site: (TODO: add link to deployed site here)
+Live site: [🔗 UWT Game Dev Git Basics Workshop](https://uwtgdc.github.io/git-basics-workshop/)
 
 ## Quickstart
 
@@ -12,18 +12,21 @@ Live site: (TODO: add link to deployed site here)
 3. Edit the fields (`name`, `color`, `message`, `emoji`)
 4. Commit changes to your branch, push changes from your _local_ branch to your branch on GitHub, open a PR (Pull Request) from your branch on GitHub into to this repo's `main` branch
 
-## How to contribute (Workshop Rules)
+## Workshop Guidelines
 
 ✅ Do:
+
 - Create a branch `add/<your-github-username>`
 - Add exactly one file: `submissions/<your-github-username>.json`
 - Keep JSON valid and follow the template fields
 
 🚫 Do not:
-- Edit any files outside `submissions/`
-- Rename or delete other people's files
 
-Your PR will run checks to ensure:
+- Edit any files outside `submissions/`
+- Rename, delete, or modify other people's files
+
+Your PR will run GitHub Action checks to ensure:
+
 - Exactly one file changed (which should be `<your-github-username>.json`)
 - The file is inside `submissions/`
 - The filename matches your GitHub username
@@ -31,34 +34,42 @@ Your PR will run checks to ensure:
 
 When checks pass, a some GitHub Actions magic merges your PR and the webapp will update with your Tile
 
-## Repository architecture (WIP)
-
-todo: update this architecture to reflect the actual, final file structure
+## Repository architecture
 
 ```text
 git-basics-workshop/
-├─ README.md
-├─ package.json
-├─ vite.config.js
+├─ .gitignore
 ├─ index.html
-├─ /public/
-│  └─ (auto-generated at build) submissions/
-│     ├─ index.json
-│     └─ <student files>.json
+├─ LICENSE
+├─ package.json
+├─ package-lock.json
+├─ README.md
+├─ vite.config.js
 ├─ /scripts/
 │  └─ build-manifest.mjs
 ├─ /src/
 │  ├─ main.jsx
 │  ├─ App.jsx
 │  └─ components/Tile.jsx
-├─ /templates/
-│  ├─ submission.json
-│  └─ schema.json
-├─ /submissions/            # students add ONE file here
+├─ /submissions/            # add ONE submission file into this directory
+│  ├─ <your-github-username>.json
+│  ├─ RheaMimiCarillo.json. # valid sample submission
 │  └─ README.md
+├─ /templates/
+│  ├─ README.md
+│  ├─ schema.json
+│  └─ submission.json       # <- use THIS file as your starting point!
 └─ /.github/
    ├─ PULL_REQUEST_TEMPLATE.md
    └─ /workflows/
-      ├─ validate.yml       # blocks merge conflict PRs
-      └─ pages.yml          # builds + deploys to GitHub Pages
+      ├─ validate.yml       # blocks merge conflicts & forbidden changes in PRs
+      └─ pages.yml          # builds + deploys React app to GitHub Pages
 ```
+
+## Glossary
+
+“**_Git_ vs _GitHub_**”: Git = local save states + history; GitHub = online hub for sharing & collaboration.
+“**Branch**”: your sandbox line of work.
+“**PR**”: 'Pull Request' asking to merge your branch into the main project.
+“**CI checks**”: magic robots that keep us from stepping on toes.
+“**Deploy**”: turn code into a live website.
