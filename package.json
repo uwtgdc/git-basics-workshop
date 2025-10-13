@@ -1,0 +1,22 @@
+{
+  "name": "git-basics-workshop",
+  "version": "1.0.0",
+  "description": "Add yourself to the mosaic by submitting **one** JSON file in `submissions/` via Pull Request. When your PR is merged, the site redeploys and your tile appears on GitHub Pages 🎉",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.7.0",
+    "ajv": "^8.17.1",
+    "fs-extra": "^11.3.2",
+    "vite": "^5.4.20"
+  }
+}
