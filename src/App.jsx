@@ -15,9 +15,6 @@
 import React, { useEffect, useState } from 'react'
 import Tile from './components/Tile.jsx'
 
-
-// const BASE = '/git-basics-workshop' // make sure this matches const BASE in vite.config.js base
-
 // use base from Vite dynamically
 // import.meta.env.BASE_URL is set from vite.config.js `base` (e.g., "/git-basics-workshop/")
 const BASE = (import.meta.env.BASE_URL || '/').replace(/\/$/, '')
@@ -41,6 +38,11 @@ export default function App() {
   /**
    * Load the list of submissions from the server.
    *
+   * This runs once when the component mounts.
+   * It fetches the list of submissions from the server and stores it in state.
+   * If there is an error, it sets the error state and displays a message.
+   * If there is no error, it sets the loading state to false.
+   *
    * @returns {Promise<void>} Resolves when the list of submissions is loaded, rejects when there is an error.
    */
     async function load() {
@@ -52,6 +54,7 @@ export default function App() {
       } catch (e) {
         setError('Could not load submissions yet. Try refreshing in a few seconds.')
       } finally {
+        // set loading state to false regardless of whether there is an error
         setLoading(false)
       }
     }
