@@ -4,5 +4,11 @@
     "color": "#ffc700",
     "message": "Game Dev Club rocks! And that's a Rock Fact :P",
     "emoji": "🪨"
+  },
+  {
+    "name": "Game Dev Club",
+    "color": "#32006E",
+    "message": "Game Dev Club!",
+    "emoji": "🧩"
   }
 ]
