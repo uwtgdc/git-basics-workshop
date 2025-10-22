@@ -1,6 +1,10 @@
 # Validate that only ONE submission file is changed in a PR.
 # This job fails if any other files are changed.
 # This job also fails if the submission file is invalid JSON or does not match the schema.
+# @author Rhea Mimi Carillo @RheaMimiCarillo <https://github.com/RheaMimiCarillo>
+# author UWT Game Dev Club @uwtgdc <https://github.com/uwtgdc>
+# @version 21 October 2025
+
 name: Validate submission
 on:
   pull_request:

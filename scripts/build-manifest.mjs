@@ -1,11 +1,12 @@
 /**
- * Build the manifest of submissions for the GitHub Pages site.
+ * Builds the manifest of submissions for the GitHub Pages site.
  *
  * This script reads the JSON files in the `submissions` directory and validates them against the schema in `templates/schema.json`.
  * It then writes a JSON file in `public/submissions/index.json` containing the list of valid submissions.
  *
- * @author Rhea Mimi Carillo <https://github.com/RheaMimiCarillo>
- * @author UWT Game Dev Club <https://github.com/uwtgdc>
+ * @author Rhea Mimi Carillo @RheaMimiCarillo <https://github.com/RheaMimiCarillo>
+ * @author UWT Game Dev Club @uwtgdc <https://github.com/uwtgdc>
+ * @version 21 October 2025
  */
 
 import fs from 'fs-extra'

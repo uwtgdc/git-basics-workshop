@@ -8,8 +8,9 @@
  * Loading state is handled with a simple "Loading..." message.
  * Error state is handled with a message "Could not load submissions yet. Try refreshing in a few seconds."
  *
- * @author Rhea Mimi Carillo <https://github.com/RheaMimiCarillo>
- * @author UWT Game Dev Club <https://github.com/uwtgdc>
+ * @author Rhea Mimi Carillo @RheaMimiCarillo <https://github.com/RheaMimiCarillo>
+ * @author UWT Game Dev Club @uwtgdc <https://github.com/uwtgdc>
+ * @version 21 October 2025
  */
 
 import React, { useEffect, useState } from 'react'
@@ -36,10 +37,10 @@ export default function App() {
 
   useEffect(() => {
   /**
-   * Load the list of submissions from the server.
+   * Loads the list of submissions.
    *
-   * This runs once when the component mounts.
-   * It fetches the list of submissions from the server and stores it in state.
+   * Runs when the component mounts.
+   * Fetches the list of submissions and stores it in state.
    * If there is an error, it sets the error state and displays a message.
    * If there is no error, it sets the loading state to false.
    *
@@ -54,7 +55,7 @@ export default function App() {
       } catch (e) {
         setError('Could not load submissions yet. Try refreshing in a few seconds.')
       } finally {
-        // set loading state to false regardless of whether there is an error
+        // To cease loading.
         setLoading(false)
       }
     }
